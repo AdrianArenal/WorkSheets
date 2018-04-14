@@ -4,4 +4,13 @@
     <string name="new_work_sheet">New worksheet</string>
     <string name="new_client">New client</string>
     <string name="get_historical">Get worksheets historical</string>
+    <string name="worker">Worker</string>
+    <string name="customer">Customer</string>
+    <string name="add_customer">+</string>
+    <string name="description">Description</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="sign">Sign worksheet</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
 </resources>

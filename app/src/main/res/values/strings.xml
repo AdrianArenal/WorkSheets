@@ -1,6 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WorkSheets</string>
     <string name="new_work_sheet">Nuevo parte de trabajo</string>
     <string name="new_client">Nuevo cliente</string>
     <string name="get_historical">Ver histórico de partes</string>
+    <string name="worker">Trabajador</string>
+    <string name="customer">Cliente</string>
+    <string name="add_customer">+</string>
+    <string name="description">Descripción</string>
+    <string name="date">Fecha</string>
+    <string name="time">Tiempo</string>
+    <string name="sign">Firmar parte de trabajo</string>
+    <string name="start">Inicio</string>
+    <string name="end">Finalización</string>
 </resources>
