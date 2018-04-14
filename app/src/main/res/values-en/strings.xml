@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WorkSheets</string>
+    <string name="new_work_sheet">New worksheet</string>
+    <string name="new_client">New client</string>
+    <string name="get_historical">Get worksheets historical</string>
+</resources>
