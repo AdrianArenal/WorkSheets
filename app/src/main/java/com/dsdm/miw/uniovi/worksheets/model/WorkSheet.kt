@@ -14,8 +14,8 @@ data class WorkSheet(val customer: String, val worker : String, val startDate : 
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),
-            TODO("startDate"),
-            TODO("endDate"),
+            Date(parcel.readLong()),
+            Date(parcel.readLong()),
             parcel.readString(),
             parcel.readByte() != 0.toByte(),
             parcel.readDouble(),
@@ -25,6 +25,8 @@ data class WorkSheet(val customer: String, val worker : String, val startDate : 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(customer)
         parcel.writeString(worker)
+        parcel.writeLong(startDate.time)
+        parcel.writeLong(endDate.time)
         parcel.writeString(description)
         parcel.writeByte(if (signed) 1 else 0)
         parcel.writeDouble(lat)
