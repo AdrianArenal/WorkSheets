@@ -1,9 +1,9 @@
 package com.dsdm.miw.uniovi.worksheets
 
-import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_new_work_sheet.*
+import org.jetbrains.anko.startActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -17,7 +17,12 @@ class NewWorkSheetActivity : AppCompatActivity() {
 
     fun initializeComponents(){
         etDate.setText(SimpleDateFormat("dd/MM/yyyy").format(Date()))
+        btSign.setOnClickListener{ createSign() }
         //Load workers names
         //Load client names
+    }
+
+    fun createSign(){
+        startActivity<SignatureActivity>()
     }
 }
