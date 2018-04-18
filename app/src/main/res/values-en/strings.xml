@@ -13,4 +13,6 @@
     <string name="sign">Sign worksheet</string>
     <string name="start">Start</string>
     <string name="end">End</string>
+    <string name="confirm">Confirm</string>
+    <string name="clean">Clean</string>
 </resources>
