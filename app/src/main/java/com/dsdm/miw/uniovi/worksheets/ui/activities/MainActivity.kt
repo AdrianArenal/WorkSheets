@@ -14,11 +14,19 @@ class MainActivity : AppCompatActivity() {
         initializeComponents()
     }
 
-    fun initializeComponents(){
+    private fun initializeComponents(){
         btNewWSheet.setOnClickListener{ createNewWorkSheet() }
+        btNewClient.setOnClickListener { createNewClient() }
+        btHistoric.setOnClickListener { listAllWorkSheets() }
     }
 
     private fun createNewWorkSheet(){
         startActivity<NewWorkSheetActivity>()
+    }
+    private fun createNewClient(){
+        startActivity<NewClientActivity>()
+    }
+    private fun listAllWorkSheets(){
+        startActivity<ListWorkSheets>()
     }
 }
