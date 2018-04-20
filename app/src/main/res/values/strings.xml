@@ -15,4 +15,5 @@
     <string name="end">Finalización</string>
     <string name="confirm">Confirmar</string>
     <string name="clean">Limpiar</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
