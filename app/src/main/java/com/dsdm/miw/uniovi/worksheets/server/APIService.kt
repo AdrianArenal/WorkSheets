@@ -20,5 +20,5 @@ interface APIService {
                      @Field("description") description: String,
                      @Field("signed") signed : Boolean,
                      @Field("lat") lat : Double,
-                     @Field("long") long : Double): Call<WorkSheet>
+                     @Field("lng") long : Double): Call<WorkSheet>
 }
