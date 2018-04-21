@@ -47,6 +47,7 @@ class SignatureActivity : AppCompatActivity() {
 
     private fun clean() {
         signature_view.clearCanvas()
+
     }
 
     private fun confirm() {

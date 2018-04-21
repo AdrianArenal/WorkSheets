@@ -36,7 +36,7 @@ class WorkSheetDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         val workSheetData = intent.getParcelableExtra<WorkSheet>(EXTRA_WORKSHEET)
         mMap = googleMap
-        val location = LatLng(workSheetData.lat, workSheetData.long)
+        val location = LatLng(workSheetData.lat, workSheetData.lng)
         mMap.addMarker(MarkerOptions().position(location).title("Marker in Worksheet"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,14.0f))
     }

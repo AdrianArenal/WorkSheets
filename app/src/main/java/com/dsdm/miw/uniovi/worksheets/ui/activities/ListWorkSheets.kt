@@ -13,11 +13,11 @@ import java.util.*
 class ListWorkSheets : AppCompatActivity() {
 
     private val items = listOf(
-            WorkSheet("Adrian","Dario", Date(),Date(),"Descripcion",true,-34.0,151.0),
-            WorkSheet("Pedro","Dario", Date(),Date(),"Descripcion",true,40.416775,4.1),
-            WorkSheet("Manolo","Dario", Date(),Date(),"Descripcion",true,19.432608,-99.133209),
-            WorkSheet("Pepito","Dario", Date(),Date(),"Descripcion",true,3.2,4.1),
-            WorkSheet("Julian","Dario", Date(),Date(),"Descripcion",true,3.2,4.1)
+            WorkSheet("Adrian","Dario", Date(),Date(),"Descripcion","",-34.0,151.0),
+            WorkSheet("Pedro","Dario", Date(),Date(),"Descripcion","",40.416775,4.1),
+            WorkSheet("Manolo","Dario", Date(),Date(),"Descripcion","",19.432608,-99.133209),
+            WorkSheet("Pepito","Dario", Date(),Date(),"Descripcion","",3.2,4.1),
+            WorkSheet("Julian","Dario", Date(),Date(),"Descripcion","",3.2,4.1)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

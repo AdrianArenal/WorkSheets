@@ -7,9 +7,9 @@ import java.util.*
 /**
  * Model class WorkSheet. It stores the work sheets information
  */
-data class WorkSheet(val customer: String, val worker : String, val startDate : Date,
-                     val endDate: Date, val description: String, val signed : Boolean,
-                     val lat : Double, val long : Double) : Parcelable {
+data class WorkSheet(val customer: String, val worker: String, val startDate: Date,
+                     val endDate: Date, val description: String, val sign: String,
+                     val lat: Double, val lng: Double) : Parcelable {
 
     constructor(parcel: Parcel) : this(
             parcel.readString(),
@@ -17,7 +17,7 @@ data class WorkSheet(val customer: String, val worker : String, val startDate : 
             Date(parcel.readLong()),
             Date(parcel.readLong()),
             parcel.readString(),
-            parcel.readByte() != 0.toByte(),
+            parcel.readString(),
             parcel.readDouble(),
             parcel.readDouble()) {
     }
@@ -28,9 +28,9 @@ data class WorkSheet(val customer: String, val worker : String, val startDate : 
         parcel.writeLong(startDate.time)
         parcel.writeLong(endDate.time)
         parcel.writeString(description)
-        parcel.writeByte(if (signed) 1 else 0)
+        parcel.writeString(sign)
         parcel.writeDouble(lat)
-        parcel.writeDouble(long)
+        parcel.writeDouble(lng)
     }
 
     override fun describeContents(): Int {
