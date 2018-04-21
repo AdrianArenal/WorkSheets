@@ -15,16 +15,12 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="320dp"
             android:layout_height="219dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
-            app:layout_constraintStart_toStartOf="@+id/guideline7"
-            app:layout_constraintTop_toBottomOf="@+id/txDescripcion"
-            app:layout_constraintVertical_bias="0.539" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txDescripcion" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline6"
@@ -104,12 +100,28 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="80dp"
-            android:text="Llamar al cliente"
+            android:layout_marginTop="8dp"
+            android:text="@string/callCustomer"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.458"
+            app:layout_constraintHorizontal_bias="0.376"
             app:layout_constraintStart_toStartOf="@+id/guideline7"
-            app:layout_constraintTop_toBottomOf="@+id/map" />
+            app:layout_constraintTop_toBottomOf="@+id/signature_view_detail" />
+
+        <com.kyanogen.signatureview.SignatureView
+            android:id="@+id/signature_view_detail"
+            android:layout_width="360dp"
+            android:layout_height="263dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            app:backgroundColor="#ffffff"
+            app:enableSignature="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/map"
+            app:penColor="#000000"
+            app:penSize="5dp" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
