@@ -15,4 +15,5 @@
     <string name="end">End</string>
     <string name="confirm">Confirm</string>
     <string name="clean">Clean</string>
+    <string name="empty">There are empty fields. Please, take a look at them.</string>
 </resources>

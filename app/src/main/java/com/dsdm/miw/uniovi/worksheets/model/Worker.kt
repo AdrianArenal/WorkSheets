@@ -36,4 +36,8 @@ data class Worker(val name : String, val password : String,
             return arrayOfNulls(size)
         }
     }
+
+    override fun toString(): String {
+        return "${name} - ${password}"
+    }
 }

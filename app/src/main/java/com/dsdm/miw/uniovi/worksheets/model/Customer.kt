@@ -38,4 +38,8 @@ data class Customer(val businessName : String, val address : String, val contact
             return arrayOfNulls(size)
         }
     }
+
+    override fun toString(): String {
+        return "${businessName} - ${address}"
+    }
 }
