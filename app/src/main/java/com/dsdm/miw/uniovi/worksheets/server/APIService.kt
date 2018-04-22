@@ -1,8 +1,6 @@
 package com.dsdm.miw.uniovi.worksheets.server
 
-import com.dsdm.miw.uniovi.worksheets.model.Customer
-import com.dsdm.miw.uniovi.worksheets.model.WorkSheet
-import com.dsdm.miw.uniovi.worksheets.model.Worker
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -20,5 +18,5 @@ interface APIService {
                      @Field("description") description: String,
                      @Field("signed") signed : Boolean,
                      @Field("lat") lat : Double,
-                     @Field("lng") long : Double): Call<WorkSheet>
+                     @Field("lng") long : Double): Call<ResponseBody>
 }
