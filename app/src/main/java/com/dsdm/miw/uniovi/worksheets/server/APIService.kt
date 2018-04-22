@@ -1,6 +1,7 @@
 package com.dsdm.miw.uniovi.worksheets.server
 
 import com.dsdm.miw.uniovi.worksheets.model.WorkSheet
+import com.google.gson.JsonObject
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Field
@@ -31,4 +32,9 @@ interface APIService {
                      @Field("contactPerson") contactPerson: String,
                      @Field("email") email : String,
                      @Field("phoneNumber") phoneNumber : Int): Call<ResponseBody>
+
+    @POST("/worker/autenticar/")
+    @FormUrlEncoded
+    fun autenthicate(@Field("name") name: String,
+                    @Field("password") password: String): Call<JsonObject>
 }

@@ -26,6 +26,9 @@ import android.graphics.BitmapFactory
 import android.graphics.Bitmap
 import android.util.Base64
 import android.util.Log
+import com.dsdm.miw.uniovi.worksheets.model.Autenticado
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import java.io.ByteArrayOutputStream
 import java.util.Date
 
@@ -54,7 +57,6 @@ class SignatureActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         api = WorkSheetServer.api
         initialize()
-
     }
 
     private fun initialize() {
@@ -80,22 +82,34 @@ class SignatureActivity : AppCompatActivity() {
             val lat = intent.getDoubleExtra(EXTRA_LAT,0.0)
             val long = intent.getDoubleExtra(EXTRA_LNG,0.0)
             val sign = bitmapToString(signature_view.signatureBitmap)
-            api!!.addWorkSheet(worker, customer, start, end, description,sign, lat, long)
-                    .enqueue(object : Callback<ResponseBody> {
-                        override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+            val password = editTextPasswordConfirm.text.toString()
+            api!!.autenthicate(worker, password)
+                    .enqueue(object : Callback<JsonObject> {
+                        override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                             if (response.isSuccessful) {
-                                val fileName = "$dest/$customer-$start.pdf"
-                                generatePDF(fileName)
-                                alert(getString(R.string.send_email)) {
-                                    title = getString(R.string.send)
-                                    yesButton {
-                                        sendEmail(fileName,customer)
-                                    }
-                                    noButton { startActivity<MainActivity>() }
-                                }.show()
+                                val resp = Gson().fromJson(response.body(), Autenticado::class.java)
+                                if(resp.autenticado){
+                                    api!!.addWorkSheet(worker, customer, start, end, description,sign, lat, long)
+                                            .enqueue(object : Callback<ResponseBody> {
+                                                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                                                    if (response.isSuccessful) {
+                                                        val fileName = "$dest/$customer-$start.pdf"
+                                                        generatePDF(fileName)
+                                                        alert(getString(R.string.send_email)) {
+                                                            title = getString(R.string.send)
+                                                            yesButton {
+                                                                sendEmail(fileName,customer)
+                                                            }
+                                                            noButton { startActivity<MainActivity>() }
+                                                        }.show()
+                                                    }
+                                                }
+                                                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {}
+                                            })
+                                }
                             }
                         }
-                        override fun onFailure(call: Call<ResponseBody>, t: Throwable) {}
+                        override fun onFailure(call: Call<JsonObject>, t: Throwable) {}
                     })
         }
     }
@@ -114,12 +128,13 @@ class SignatureActivity : AppCompatActivity() {
             val start = Date(intent.getLongExtra(EXTRA_START, 0))
             val end = Date(intent.getLongExtra(EXTRA_END, 0))
             val desc = intent.getStringExtra(EXTRA_DESCRIPTION)
+            val contactPerson = editTextContactPerson.text.toString()
             GeneratePDFDocument().createPdf(dest, customer, worker, start, end,
-                    desc, signature_view.signatureBitmap,txContactPerson.text.toString())
+                    desc, signature_view.signatureBitmap, contactPerson)
         }
     }
 
-    private fun sendEmail(fileName: String,customer:String) {
+    private fun sendEmail(fileName: String, customer:String) {
         doAsync {
             val server = WorkSheetServer()
             val customer = server.getCustomerByName(customer)

@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.ArrayAdapter
 import com.dsdm.miw.uniovi.worksheets.R
+import com.dsdm.miw.uniovi.worksheets.model.Customer
 import com.dsdm.miw.uniovi.worksheets.server.WorkSheetServer
 import kotlinx.android.synthetic.main.activity_new_work_sheet.*
 import org.jetbrains.anko.*
@@ -34,7 +35,7 @@ class NewWorkSheetActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    private fun initializeComponents(){
+    private fun initializeComponents() {
         etDate.setText(SimpleDateFormat("dd/MM/yyyy").format(Date()))
         btSign.setOnClickListener{ createSign() }
         doAsync {
@@ -51,6 +52,7 @@ class NewWorkSheetActivity : AppCompatActivity() {
                             ArrayAdapter(this,
                                     android.R.layout.simple_spinner_dropdown_item,
                                     customers.map { it.businessName }.toMutableList())
+
                 }
             }
         }

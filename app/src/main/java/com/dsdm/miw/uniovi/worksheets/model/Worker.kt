@@ -41,3 +41,6 @@ data class Worker(val name : String, val password : String,
         return "${name} - ${password}"
     }
 }
+
+
+class Autenticado(var autenticado: Boolean, var token: String){}
