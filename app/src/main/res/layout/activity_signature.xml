@@ -23,13 +23,17 @@
         <com.kyanogen.signatureview.SignatureView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:sign="http://schemas.android.com/apk/res-auto"
             android:id="@+id/signature_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_width="379dp"
+            android:layout_height="287dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             sign:backgroundColor="#ffffff"
             sign:enableSignature="true"
-            sign:layout_constraintBottom_toTopOf="@+id/btnConfirm"
+            sign:layout_constraintBottom_toTopOf="@+id/editTextContactPerson"
+            sign:layout_constraintEnd_toEndOf="parent"
+            sign:layout_constraintStart_toStartOf="parent"
             sign:layout_constraintTop_toTopOf="parent"
             sign:penColor="@android:color/black"
             sign:penSize="2dp" />
@@ -57,5 +61,63 @@
             app:layout_constraintEnd_toStartOf="@+id/btnConfirm"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/txContactPerson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/contactPerson"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editTextContactPerson"
+            app:layout_constraintEnd_toStartOf="@+id/editTextContactPerson"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextContactPerson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/editTextPasswordConfirm"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/txPasswordConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/yourPassword"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editTextPasswordConfirm"
+            app:layout_constraintEnd_toStartOf="@+id/editTextPasswordConfirm"
+            app:layout_constraintHorizontal_bias="0.727"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextPasswordConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/btnConfirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txContactPerson" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/contactSignature"
+            app:layout_constraintBottom_toTopOf="@+id/signature_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 </LinearLayout>

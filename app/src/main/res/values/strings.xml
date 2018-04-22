@@ -16,5 +16,9 @@
     <string name="confirm">Confirmar</string>
     <string name="clean">Limpiar</string>
     <string name="title_activity_maps">Map</string>
+    <string name="contactPerson">Persona de contacto</string>
+    <string name="contactSignature">Firma de contacto</string>
+    <string name="callCustomer">Llamar al cliente</string>
+    <string name="yourPassword">Tu contraseña</string>
     <string name="empty">Existen campos vacíos. Por favor, revíselos.</string>
 </resources>

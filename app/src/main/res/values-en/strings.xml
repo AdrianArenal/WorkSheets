@@ -15,5 +15,9 @@
     <string name="end">End</string>
     <string name="confirm">Confirm</string>
     <string name="clean">Clean</string>
+    <string name="contactPerson">Contact person</string>
+    <string name="contactSignature">Contact Signature</string>
+    <string name="callCustomer">Call customer</string>
+    <string name="yourPassword">Your password</string>
     <string name="empty">There are empty fields. Please, take a look at them.</string>
 </resources>
