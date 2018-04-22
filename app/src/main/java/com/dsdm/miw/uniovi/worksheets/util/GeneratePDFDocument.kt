@@ -18,7 +18,7 @@ class GeneratePDFDocument {
 
     @Throws(IOException::class)
     fun createPdf(dest : String, customer : String, worker : String,
-                  start : Date, end: Date, desc : String, image : Bitmap) {
+                  start : Date, end: Date, desc : String, image : Bitmap, contactPerson:String) {
         val writer = PdfWriter(dest)
         val pdf = PdfDocument(writer)
         val document = Document(pdf)
@@ -32,6 +32,7 @@ class GeneratePDFDocument {
         document.add(Paragraph("HORA DE FINALIZACIÓN: $endDate"))
         document.add(Paragraph("DESCRIPCIÓN: $desc"))
         document.add(Paragraph("-----------------------------"))
+        document.add(Paragraph("PERSONA DE CONTACTO: $contactPerson"))
         document.add(Paragraph("FIRMA: "))
         val stream = ByteArrayOutputStream()
         image.compress(Bitmap.CompressFormat.JPEG, 100, stream)

@@ -1,11 +1,15 @@
 package com.dsdm.miw.uniovi.worksheets.server
 
+import com.dsdm.miw.uniovi.worksheets.model.WorkSheet
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 import java.util.*
+import retrofit2.http.GET
+
+
 
 interface APIService {
 
@@ -13,10 +17,18 @@ interface APIService {
     @FormUrlEncoded
     fun addWorkSheet(@Field("worker") worker: String,
                      @Field("customer") customer: String,
-                     @Field("startDate") startDate : Date,
-                     @Field("endDate") endDate: Date,
+                     @Field("startDate") startDate : Long,
+                     @Field("endDate") endDate: Long,
                      @Field("description") description: String,
-                     @Field("signed") signed : Boolean,
+                     @Field("sign") sign : String,
                      @Field("lat") lat : Double,
                      @Field("lng") long : Double): Call<ResponseBody>
+
+    @POST("customer")
+    @FormUrlEncoded
+    fun addCustomer(@Field("businessName") businessName: String,
+                     @Field("address") address: String,
+                     @Field("contactPerson") contactPerson: String,
+                     @Field("email") email : String,
+                     @Field("phoneNumber") phoneNumber : Int): Call<ResponseBody>
 }

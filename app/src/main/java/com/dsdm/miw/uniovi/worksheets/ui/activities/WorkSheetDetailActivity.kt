@@ -1,6 +1,8 @@
 package com.dsdm.miw.uniovi.worksheets.ui.activities
 
 import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
@@ -16,18 +18,21 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_work_sheet_detail.*
 import android.graphics.BitmapFactory
-import android.util.Base64
-import java.io.ByteArrayOutputStream
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
+import android.net.Uri.*
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.util.Base64
+import com.dsdm.miw.uniovi.worksheets.server.WorkSheetServer
+import org.jetbrains.anko.activityUiThreadWithContext
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
+import java.text.SimpleDateFormat
+import java.util.*
 
 private const val REQUEST_CALL_PHONE_PERMISSIONS = 2
 class WorkSheetDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
-
     companion object {
         const val EXTRA_WORKSHEET = "WorkSheetDetailActivity::worksheet"
     }
@@ -40,19 +45,23 @@ class WorkSheetDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun initialize() {
-        btnCallCustomer.setOnClickListener { checkCallPhonePermission() }
+
+        val wsd = intent.getParcelableExtra<WorkSheet>(EXTRA_WORKSHEET)
+
+        btCallCustomer.setOnClickListener { checkCallPhonePermission() }
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        Log.d("TAG", intent.getParcelableExtra<WorkSheet>(EXTRA_WORKSHEET).customer)
-        /*val b = Bitmap.createBitmap(100, 100,
-                Bitmap.Config.ARGB_8888)
-        b.eraseColor(Color.RED)
-        val bitstring=bitmapToString(b)
-        Log.d("bitmap","$bitstring")
-        val mutableBitmap =stringToBitmap(bitstring).copy(Bitmap.Config.ARGB_8888,true)
-        signature_view_detail.setBitmap(mutableBitmap)*/
 
+        txCustomer.text = wsd.customer
+        txWorker.text = wsd.worker
+        txDate.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                .format(wsd.startDate)
+        txDuration.text = ((wsd.endDate - wsd.startDate) / 1000 / 60).toString() + " min"
+        txDescripcion.text = wsd.description
+        val bitmap = stringToBitmap(intent.getParcelableExtra<WorkSheet>(EXTRA_WORKSHEET).sign)
+                .copy(Bitmap.Config.ARGB_8888, true)
+        signature_view_detail.setBitmap(bitmap)
 
     }
 
@@ -61,17 +70,31 @@ class WorkSheetDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
         val location = LatLng(workSheetData.lat, workSheetData.lng)
         mMap.addMarker(MarkerOptions().position(location).title("Marker in ${workSheetData.customer}"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location,14.0f))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 14.0f))
+    }
+
+    private fun stringToBitmap(cadena: String): Bitmap {
+        val bytes = Base64.decode(cadena, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
     }
 
     private fun callCustomerNumber(){
-        val callIntent = Intent(Intent.ACTION_CALL)
-        callIntent.data = Uri.parse("tel:123456789")
-        try {
-        startActivity(callIntent)
-        } catch (ex: SecurityException) {
-            Log.d("phone", "Security Exception, no phone available")
+        doAsync {
+            val server = WorkSheetServer()
+            val customer = server.getCustomerByName(intent.getParcelableExtra<WorkSheet>(EXTRA_WORKSHEET).customer)
+            if (customer != null) {
+                uiThread {
+                    val callIntent = Intent(Intent.ACTION_CALL)
+                    callIntent.data = Uri.parse("tel:${customer.phoneNumber}")
+                    try {
+                        startActivity(callIntent)
+                    } catch (ex: SecurityException) {
+                        Log.d("phone", "Security Exception, no phone available")
+                    }
+                }
+            }
         }
+
     }
     private fun checkCallPhonePermission() {
         if (ContextCompat.checkSelfPermission(this,
@@ -101,15 +124,5 @@ class WorkSheetDetailActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
-    }
-    private fun bitmapToString(bitmap: Bitmap): String {
-        val bytes = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, bytes)
-        return Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT)
-    }
-
-    private fun stringToBitmap(cadena: String): Bitmap {
-        val bytes = Base64.decode(cadena, Base64.DEFAULT)
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
     }
 }

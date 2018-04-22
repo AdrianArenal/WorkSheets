@@ -1,31 +1,34 @@
 package com.dsdm.miw.uniovi.worksheets.ui.activities
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
 import android.net.Uri
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.os.StrictMode
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.util.Log
+import android.support.v7.app.AppCompatActivity
 import com.dsdm.miw.uniovi.worksheets.R
-import com.dsdm.miw.uniovi.worksheets.model.WorkSheet
 import com.dsdm.miw.uniovi.worksheets.server.APIService
 import com.dsdm.miw.uniovi.worksheets.server.WorkSheetServer
 import com.dsdm.miw.uniovi.worksheets.util.GeneratePDFDocument
 import kotlinx.android.synthetic.main.activity_signature.*
 import okhttp3.ResponseBody
+import org.jetbrains.anko.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
-import java.util.*
+
+import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+import android.util.Base64
+import android.util.Log
+import java.io.ByteArrayOutputStream
+import java.util.Date
+
 
 class SignatureActivity : AppCompatActivity() {
 
@@ -45,6 +48,8 @@ class SignatureActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signature)
+        val builder = StrictMode.VmPolicy.Builder()
+        StrictMode.setVmPolicy(builder.build())
         setSupportActionBar(toolbarSignature)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         api = WorkSheetServer.api
@@ -67,22 +72,29 @@ class SignatureActivity : AppCompatActivity() {
 
     private fun confirm() {
         if (!signature_view.isBitmapEmpty) {
-            api!!.addWorkSheet(intent.getStringExtra(EXTRA_WORKER),
-                    intent.getStringExtra(EXTRA_CUSTOMER),
-                    Date(intent.getLongExtra(EXTRA_START, 0)),
-                    Date(intent.getLongExtra(EXTRA_END, 0)),
-                    intent.getStringExtra(EXTRA_DESCRIPTION),
-                    true, intent.getDoubleExtra(EXTRA_LAT,0.0),
-                    intent.getDoubleExtra(EXTRA_LNG,0.0))
+            val worker = intent.getStringExtra(EXTRA_WORKER)
+            val customer = intent.getStringExtra(EXTRA_CUSTOMER)
+            val start = intent.getLongExtra(EXTRA_START, 0)
+            val end = intent.getLongExtra(EXTRA_END, 0)
+            val description =intent.getStringExtra(EXTRA_DESCRIPTION)
+            val lat = intent.getDoubleExtra(EXTRA_LAT,0.0)
+            val long = intent.getDoubleExtra(EXTRA_LNG,0.0)
+            val sign = bitmapToString(signature_view.signatureBitmap)
+            api!!.addWorkSheet(worker, customer, start, end, description,sign, lat, long)
                     .enqueue(object : Callback<ResponseBody> {
                         override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                             if (response.isSuccessful) {
-                                val customer = intent.getStringExtra(EXTRA_CUSTOMER)
-                                val timestamp = intent.getLongExtra(EXTRA_START, 0)
-                                generatePDF("$dest/$customer-$timestamp.pdf")
+                                val fileName = "$dest/$customer-$start.pdf"
+                                generatePDF(fileName)
+                                alert(getString(R.string.send_email)) {
+                                    title = getString(R.string.send)
+                                    yesButton {
+                                        sendEmail(fileName,customer)
+                                    }
+                                    noButton { startActivity<MainActivity>() }
+                                }.show()
                             }
                         }
-
                         override fun onFailure(call: Call<ResponseBody>, t: Throwable) {}
                     })
         }
@@ -103,19 +115,34 @@ class SignatureActivity : AppCompatActivity() {
             val end = Date(intent.getLongExtra(EXTRA_END, 0))
             val desc = intent.getStringExtra(EXTRA_DESCRIPTION)
             GeneratePDFDocument().createPdf(dest, customer, worker, start, end,
-                    desc, signature_view.signatureBitmap)
+                    desc, signature_view.signatureBitmap,txContactPerson.text.toString())
         }
     }
 
-    /**private fun sendEmail(filename: String) {
-        val filelocation = File(dest, filename)
-        val path = Uri.fromFile(filelocation)
-        val emailIntent = Intent(Intent.ACTION_SEND)
-        emailIntent.type = "vnd.android.cursor.dir/email"
-        val to = arrayOf("dariorginf@gmail.com")
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, to)
-        emailIntent.putExtra(Intent.EXTRA_STREAM, path)
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject")
-        startActivity(Intent.createChooser(emailIntent, "Send email..."))
-    }*/
+    private fun sendEmail(fileName: String,customer:String) {
+        doAsync {
+            val server = WorkSheetServer()
+            val customer = server.getCustomerByName(customer)
+            if (customer != null) {
+                uiThread {
+                    val fileLocation = File(fileName)
+                    val path = Uri.fromFile(fileLocation)
+                    val emailIntent = Intent(Intent.ACTION_SEND)
+                    emailIntent.type = "vnd.android.cursor.dir/email"
+                    val to = arrayOf(customer.email)
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, to)
+                    emailIntent.putExtra(Intent.EXTRA_STREAM, path)
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.sheet))
+                    startActivity(Intent.createChooser(emailIntent, getString(R.string.send)))
+                }
+            }
+        }
+
+    }
+    private fun bitmapToString(bitmap: Bitmap): String {
+        val bytes = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, bytes)
+        return Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT)
+    }
+
 }

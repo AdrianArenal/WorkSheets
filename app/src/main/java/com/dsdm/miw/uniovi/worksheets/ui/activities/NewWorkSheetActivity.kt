@@ -5,24 +5,19 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import com.dsdm.miw.uniovi.worksheets.R
 import com.dsdm.miw.uniovi.worksheets.server.WorkSheetServer
 import kotlinx.android.synthetic.main.activity_new_work_sheet.*
-import org.jetbrains.anko.activityUiThreadWithContext
-import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.*
 import java.text.SimpleDateFormat
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.toast
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
+
 private const val REQUEST_FINE_LOCATION_PERMISSIONS = 1
 class NewWorkSheetActivity : AppCompatActivity() {
 
@@ -33,8 +28,8 @@ class NewWorkSheetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_work_sheet)
-        checkLocationPermission()
         initializeComponents()
+        checkLocationPermission()
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
@@ -62,7 +57,7 @@ class NewWorkSheetActivity : AppCompatActivity() {
     }
 
     private fun createSign(){
-        if(checkEmptyFields())
+        if(checkEmptyFields() && checkTimes())
             startActivity<SignatureActivity>(
                     SignatureActivity.EXTRA_WORKER to spWorkers.selectedItem.toString(),
                     SignatureActivity.EXTRA_CUSTOMER to spCustomers.selectedItem.toString(),
@@ -74,22 +69,6 @@ class NewWorkSheetActivity : AppCompatActivity() {
             )
     }
 
-    private fun checkEmptyFields() : Boolean{
-        if(etDate.text.isEmpty()
-                || etStart.text.isEmpty()
-                || etEnd.text.isEmpty()
-                || etDescription.text.isEmpty()){
-            toast(R.string.empty)
-            return false
-        }
-        return true
-    }
-
-    private fun convertHourToLong(hour: String): Long{
-        val date: String = etDate.text.toString()
-        return SimpleDateFormat("dd/MM/yyyy hh:mm", Locale.getDefault())
-                .parse("${date} ${hour}").time
-    }
     private fun checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this,
                         Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -105,6 +84,7 @@ class NewWorkSheetActivity : AppCompatActivity() {
         }
 
     }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
@@ -119,6 +99,7 @@ class NewWorkSheetActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun getLocation() : Location?{
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager?
         try {
@@ -129,6 +110,7 @@ class NewWorkSheetActivity : AppCompatActivity() {
         }
         return null
     }
+
     private val locationListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
             locLat=location.latitude
@@ -137,6 +119,37 @@ class NewWorkSheetActivity : AppCompatActivity() {
         override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
         override fun onProviderEnabled(provider: String) {}
         override fun onProviderDisabled(provider: String) {}
+    }
+
+    private fun checkEmptyFields() : Boolean{
+        if(etDate.text.isEmpty()
+                || etStart.text.isEmpty()
+                || etEnd.text.isEmpty()
+                || etDescription.text.isEmpty()){
+            toast(R.string.empty)
+            return false
+        }
+        return true
+    }
+
+    private fun checkTimes() : Boolean{
+        if((convertHourToLong(etEnd.text.toString()) -
+                convertHourToLong(etStart.text.toString()) < 0)
+                || convertHourToLong(etStart.text.toString()) == -1L
+                || convertHourToLong(etEnd.text.toString()) == -1L){
+            longToast(R.string.check_hour)
+            return false
+        }
+        return true
+    }
+
+    private fun convertHourToLong(hour: String): Long{
+        val hourSplit = hour.split(":")
+        if(hourSplit.count() == 0 || hourSplit[0].toInt() > 23 || hourSplit[1].toInt() > 59)
+            return -1
+        val date: String = etDate.text.toString()
+        return SimpleDateFormat("dd/MM/yyyy hh:mm", Locale.getDefault())
+                    .parse("${date} ${hour}").time
     }
 
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WorkSheets</string>
+    <string name="sheet">Worksheet</string>
     <string name="new_work_sheet">New worksheet</string>
     <string name="new_client">New client</string>
     <string name="get_historical">Get worksheets historical</string>
@@ -20,4 +21,7 @@
     <string name="callCustomer">Call customer</string>
     <string name="yourPassword">Your password</string>
     <string name="empty">There are empty fields. Please, take a look at them.</string>
+    <string name="send">Send email...</string>
+    <string name="send_email">Would you like to send now an email attaching the work sheet stored?</string>
+    <string name="check_hour">Input times must have a right format and the ending date must be later than the starting one</string>
 </resources>

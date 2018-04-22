@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WorkSheets</string>
+    <string name="sheet">Parte de trabajo</string>
     <string name="new_work_sheet">Nuevo parte de trabajo</string>
     <string name="new_client">Nuevo cliente</string>
     <string name="get_historical">Ver histórico de partes</string>
@@ -21,4 +22,7 @@
     <string name="callCustomer">Llamar al cliente</string>
     <string name="yourPassword">Tu contraseña</string>
     <string name="empty">Existen campos vacíos. Por favor, revíselos.</string>
+    <string name="send">Enviar email...</string>
+    <string name="send_email">¿Desea envíar ahora un email con el parte de trabajo generado?</string>
+    <string name="check_hour">Las horas especificadas deberán tener un formato correcto y la hora de finalización deberá ser posterior a la de inicio</string>
 </resources>

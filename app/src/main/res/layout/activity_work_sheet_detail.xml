@@ -13,12 +13,13 @@
         <fragment
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="320dp"
+            android:layout_width="363dp"
             android:layout_height="219dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="48dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txDescripcion" />
 
@@ -58,19 +59,6 @@
             app:layout_constraintStart_toEndOf="@+id/txCustomer"
             app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
-        <MultiAutoCompleteTextView
-            android:id="@+id/txDescripcion"
-            android:layout_width="317dp"
-            android:layout_height="167dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Hola que tal fenomenal tu yo como dios, aqui va el concepto"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.121"
-            app:layout_constraintStart_toStartOf="@+id/guideline7"
-            app:layout_constraintTop_toBottomOf="@+id/txDuration" />
-
         <TextView
             android:id="@+id/txDate"
             android:layout_width="wrap_content"
@@ -95,7 +83,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txWorker" />
 
         <Button
-            android:id="@+id/btnCallCustomer"
+            android:id="@+id/btCallCustomer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -122,6 +110,19 @@
             app:layout_constraintTop_toBottomOf="@+id/map"
             app:penColor="#000000"
             app:penSize="5dp" />
+
+        <TextView
+            android:id="@+id/txDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.472"
+            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintTop_toBottomOf="@+id/txDuration" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

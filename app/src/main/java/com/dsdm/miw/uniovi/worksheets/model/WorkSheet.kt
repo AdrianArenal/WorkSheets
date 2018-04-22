@@ -7,15 +7,15 @@ import java.util.*
 /**
  * Model class WorkSheet. It stores the work sheets information
  */
-data class WorkSheet(val customer: String, val worker: String, val startDate: Date,
-                     val endDate: Date, val description: String, val sign: String,
+data class WorkSheet(val customer: String, val worker: String, val startDate: Long,
+                     val endDate: Long, val description: String, val sign: String,
                      val lat: Double, val lng: Double) : Parcelable {
 
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),
-            Date(parcel.readLong()),
-            Date(parcel.readLong()),
+            parcel.readLong(),
+            parcel.readLong(),
             parcel.readString(),
             parcel.readString(),
             parcel.readDouble(),
@@ -25,8 +25,8 @@ data class WorkSheet(val customer: String, val worker: String, val startDate: Da
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(customer)
         parcel.writeString(worker)
-        parcel.writeLong(startDate.time)
-        parcel.writeLong(endDate.time)
+        parcel.writeLong(startDate)
+        parcel.writeLong(endDate)
         parcel.writeString(description)
         parcel.writeString(sign)
         parcel.writeDouble(lat)
@@ -45,5 +45,9 @@ data class WorkSheet(val customer: String, val worker: String, val startDate: Da
         override fun newArray(size: Int): Array<WorkSheet?> {
             return arrayOfNulls(size)
         }
+    }
+
+    override fun toString(): String {
+        return "$endDate - $startDate"
     }
 }

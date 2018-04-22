@@ -28,16 +28,16 @@
             app:layout_constraintGuide_begin="57dp" />
 
         <TextView
-            android:id="@+id/txName"
+            android:id="@+id/txBusinessName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Nombre"
-            app:layout_constraintBaseline_toBaselineOf="@+id/editTextName"
+            android:text="Empresa"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editTextBusinessName"
             app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
         <EditText
-            android:id="@+id/editTextName"
+            android:id="@+id/editTextBusinessName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -47,7 +47,7 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.507"
-            app:layout_constraintStart_toEndOf="@+id/txName"
+            app:layout_constraintStart_toEndOf="@+id/txBusinessName"
             app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
         <TextView
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:text="Email"
             app:layout_constraintBaseline_toBaselineOf="@+id/editTextEmail"
-            app:layout_constraintEnd_toEndOf="@+id/txName" />
+            app:layout_constraintEnd_toEndOf="@+id/txBusinessName" />
 
         <EditText
             android:id="@+id/editTextEmail"
@@ -69,7 +69,7 @@
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/txEmail"
-            app:layout_constraintTop_toBottomOf="@+id/txName" />
+            app:layout_constraintTop_toBottomOf="@+id/txBusinessName" />
 
         <TextView
             android:id="@+id/txPhone"
@@ -93,24 +93,24 @@
             app:layout_constraintTop_toBottomOf="@+id/txEmail" />
 
         <TextView
-            android:id="@+id/txNIF"
+            android:id="@+id/txAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NIF"
-            app:layout_constraintBaseline_toBaselineOf="@+id/editTextNIF"
+            android:text="Direccion"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editTextAddress"
             app:layout_constraintEnd_toEndOf="@+id/txPhone" />
 
         <EditText
-            android:id="@+id/editTextNIF"
+            android:id="@+id/editTextAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:ems="10"
-            android:inputType="number"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txNIF"
+            app:layout_constraintStart_toEndOf="@+id/txAddress"
             app:layout_constraintTop_toBottomOf="@+id/txPhone" />
 
         <Button
@@ -138,6 +138,32 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="494dp" />
+
+        <TextView
+            android:id="@+id/txContactPerson"
+            android:layout_width="83dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="Persona de contacto"
+            app:layout_constraintEnd_toEndOf="@+id/txAddress"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/txAddress" />
+
+        <EditText
+            android:id="@+id/editTextContactPerson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.347"
+            app:layout_constraintStart_toEndOf="@+id/txContactPerson"
+            app:layout_constraintTop_toBottomOf="@+id/txAddress" />
 
     </android.support.constraint.ConstraintLayout>
 </LinearLayout>

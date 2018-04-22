@@ -1,5 +1,6 @@
 package com.dsdm.miw.uniovi.worksheets.ui.activities
 
+
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.dsdm.miw.uniovi.worksheets.R
@@ -23,10 +24,13 @@ class MainActivity : AppCompatActivity() {
     private fun createNewWorkSheet(){
         startActivity<NewWorkSheetActivity>()
     }
+
     private fun createNewClient(){
         startActivity<NewClientActivity>()
     }
+
     private fun listAllWorkSheets(){
         startActivity<ListWorkSheets>()
     }
+
 }

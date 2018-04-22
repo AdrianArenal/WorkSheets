@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import com.dsdm.miw.uniovi.worksheets.R
 import com.dsdm.miw.uniovi.worksheets.model.WorkSheet
 import kotlinx.android.synthetic.main.item_work_sheet.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
-class WorkSheetListAdapter(val items: List<WorkSheet>, val itemClick: (WorkSheet) -> Unit)
+class WorkSheetListAdapter(val items: Array<WorkSheet>, val itemClick: (WorkSheet) -> Unit)
     : RecyclerView.Adapter<WorkSheetListAdapter.ViewHolder>() {
 
     // Implementación de RecyclerView.ViewHolder que se usará en la función onCreateViewHolder
@@ -22,8 +24,9 @@ class WorkSheetListAdapter(val items: List<WorkSheet>, val itemClick: (WorkSheet
             with(worksheet) {
                 itemView.txCustomer.text = customer
                 itemView.txWorker.text = worker
-                itemView.txDate.text = startDate.toString()
-                itemView.txDuration.text = (endDate.time-startDate.time).toString()
+                itemView.txDate.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                        .format(startDate)
+                itemView.txDuration.text = ((endDate-startDate)/1000/60).toString() + " min"
                 itemView.setOnClickListener { itemClick(this) }
             }
         }
