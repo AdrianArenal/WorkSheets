@@ -54,7 +54,7 @@ class WorkSheetDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         txWorker.text = wsd.worker
         txDate.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                 .format(wsd.startDate)
-        txDuration.text = "${((wsd.endDate - wsd.startDate) / 1000 / 60)}+  min"
+        txDuration.text = "${((wsd.endDate - wsd.startDate) / 1000 / 60)} min"
         txDescripcion.text = wsd.description
         val bitmap = stringToBitmap(intent.getParcelableExtra<WorkSheet>(EXTRA_WORKSHEET).sign)
                 .copy(Bitmap.Config.ARGB_8888, true)

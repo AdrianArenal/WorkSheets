@@ -52,34 +52,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/worker"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txCustomer"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
             app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
         <TextView
             android:id="@+id/txDate"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:text="@string/date"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
             app:layout_constraintStart_toStartOf="@+id/guideline7"
-            app:layout_constraintTop_toBottomOf="@+id/txWorker" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
         <TextView
             android:id="@+id/txDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="20dp"
             android:text="@string/date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.558"
-            app:layout_constraintStart_toEndOf="@+id/txDate"
+            app:layout_constraintEnd_toStartOf="@+id/imageView4"
             app:layout_constraintTop_toBottomOf="@+id/txWorker" />
 
         <Button
@@ -117,15 +113,14 @@
 
         <TextView
             android:id="@+id/txDescripcion"
-            android:layout_width="351dp"
+            android:layout_width="298dp"
             android:layout_height="47dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="20dp"
             android:text="@string/description"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.472"
-            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toEndOf="@+id/imageView7"
             app:layout_constraintTop_toBottomOf="@+id/txDuration" />
 
         <TextView
@@ -137,9 +132,9 @@
             android:layout_marginTop="8dp"
             android:text="@string/contactSignature"
             app:layout_constraintBottom_toTopOf="@+id/signature_view_detail"
-            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toEndOf="@+id/imageView9"
             app:layout_constraintTop_toBottomOf="@+id/map"
-            app:layout_constraintVertical_bias="0.571" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/textLocation"
@@ -150,8 +145,83 @@
             android:layout_marginTop="8dp"
             android:text="@string/location"
             app:layout_constraintBottom_toTopOf="@+id/map"
+            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/txDescripcion"
+            app:layout_constraintVertical_bias="0.692" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txWorker"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline6"
+            app:srcCompat="@android:drawable/ic_menu_myplaces" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:srcCompat="@android:drawable/ic_menu_recent_history" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@+id/txCustomer"
+            app:layout_constraintTop_toTopOf="@+id/guideline6"
+            app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/txDate"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            app:srcCompat="@android:drawable/ic_menu_day" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txDescripcion"
             app:layout_constraintStart_toStartOf="@+id/guideline7"
-            app:layout_constraintTop_toBottomOf="@+id/txDescripcion" />
+            app:layout_constraintTop_toTopOf="@+id/txDescripcion"
+            app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textLocation"
+            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintTop_toTopOf="@+id/textLocation"
+            app:srcCompat="@android:drawable/ic_menu_mapmode" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txContactSignature"
+            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintTop_toTopOf="@+id/txContactSignature"
+            app:srcCompat="@android:drawable/ic_menu_edit" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
