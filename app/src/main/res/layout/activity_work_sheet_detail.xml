@@ -92,7 +92,9 @@
             android:text="@string/callCustomer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signature_view_detail" />
+            app:layout_constraintTop_toBottomOf="@+id/signature_view_detail"
+            android:background="@drawable/button"
+            style="@style/buttonStyle"/>
 
         <com.kyanogen.signatureview.SignatureView
             android:id="@+id/signature_view_detail"

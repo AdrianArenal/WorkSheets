@@ -35,7 +35,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
+        app:layout_constraintTop_toBottomOf="@+id/ivLogo"
+        android:background="@drawable/button"
+        style="@style/buttonStyle"/>
 
     <Button
         android:id="@+id/btNewClient"
@@ -48,7 +50,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btNewWSheet" />
+        app:layout_constraintTop_toBottomOf="@+id/btNewWSheet"
+        android:background="@drawable/button"
+        style="@style/buttonStyle"/>
 
     <Button
         android:id="@+id/btHistoric"
@@ -61,6 +65,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btNewClient" />
+        app:layout_constraintTop_toBottomOf="@+id/btNewClient"
+        android:background="@drawable/button"
+        style="@style/buttonStyle"/>
 
 </android.support.constraint.ConstraintLayout>
