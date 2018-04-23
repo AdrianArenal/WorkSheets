@@ -16,6 +16,7 @@
     <string name="customer">Customer</string>
     <string name="add_customer">+</string>
     <string name="search">Search WorkSheet...</string>
+    <string name="location">Location</string>
     <string name="btn_add_customer">Add customer</string>
     <string name="description">Description</string>
     <string name="address">Address</string>

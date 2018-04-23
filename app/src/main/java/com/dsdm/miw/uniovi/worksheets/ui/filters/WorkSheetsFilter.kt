@@ -1,15 +1,15 @@
 package com.dsdm.miw.uniovi.worksheets.ui.filters
 
-import android.util.Log
 import android.widget.Filter
 import com.dsdm.miw.uniovi.worksheets.model.WorkSheet
 import com.dsdm.miw.uniovi.worksheets.ui.adapters.WorkSheetListAdapter
-import java.util.ArrayList
+import java.util.*
 
 class WorkSheetsFilter(private var filterList: Array<WorkSheet>, private var adapter: WorkSheetListAdapter) : Filter() {
 
     //FILTERING OCURS
     override fun performFiltering(constraint: CharSequence?): FilterResults {
+        @Suppress("NAME_SHADOWING")
         var constraint = constraint
         val results = FilterResults()
         //CHECK CONSTRAINT VALIDITY

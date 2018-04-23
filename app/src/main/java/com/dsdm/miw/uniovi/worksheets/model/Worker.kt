@@ -6,15 +6,14 @@ import android.os.Parcelable
 /**
  * Model class Worker. It contains application users data
  */
-data class Worker(val name : String, val password : String,
-                  val email : String, val phoneNumber: Long) : Parcelable {
+data class Worker(val name: String, private val password: String,
+                  val email: String, private val phoneNumber: Long) : Parcelable {
 
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            parcel.readLong()) {
-    }
+            parcel.readLong())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
@@ -38,9 +37,9 @@ data class Worker(val name : String, val password : String,
     }
 
     override fun toString(): String {
-        return "${name} - ${password}"
+        return "$name - $password"
     }
 }
 
 
-class Autenticado(var autenticado: Boolean, var token: String){}
+class Autenticado(var autenticado: Boolean, var token: String)

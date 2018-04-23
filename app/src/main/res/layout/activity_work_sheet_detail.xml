@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="txCustomer"
+            android:text="@string/customer"
             app:layout_constraintStart_toStartOf="@+id/guideline7"
             app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
@@ -54,7 +54,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="txWorker"
+            android:text="@string/worker"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/txCustomer"
             app:layout_constraintTop_toTopOf="@+id/guideline6" />
@@ -65,7 +65,7 @@
             android:layout_height="15dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Fecha"
+            android:text="@string/date"
             app:layout_constraintStart_toStartOf="@+id/guideline7"
             app:layout_constraintTop_toBottomOf="@+id/txWorker" />
 
@@ -76,7 +76,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="txDuration"
+            android:text="@string/date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.558"
             app:layout_constraintStart_toEndOf="@+id/txDate"
@@ -84,17 +84,20 @@
 
         <Button
             android:id="@+id/btCallCustomer"
+            style="@style/buttonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/button"
             android:text="@string/callCustomer"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signature_view_detail"
-            android:background="@drawable/button"
-            style="@style/buttonStyle"/>
+            android:textAllCaps="true"/>
 
         <com.kyanogen.signatureview.SignatureView
             android:id="@+id/signature_view_detail"
@@ -115,15 +118,40 @@
         <TextView
             android:id="@+id/txDescripcion"
             android:layout_width="351dp"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:text="@string/description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.472"
             app:layout_constraintStart_toStartOf="@+id/guideline7"
             app:layout_constraintTop_toBottomOf="@+id/txDuration" />
+
+        <TextView
+            android:id="@+id/txContactSignature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/contactSignature"
+            app:layout_constraintBottom_toTopOf="@+id/signature_view_detail"
+            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintTop_toBottomOf="@+id/map"
+            app:layout_constraintVertical_bias="0.571" />
+
+        <TextView
+            android:id="@+id/textLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/location"
+            app:layout_constraintBottom_toTopOf="@+id/map"
+            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            app:layout_constraintTop_toBottomOf="@+id/txDescripcion" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

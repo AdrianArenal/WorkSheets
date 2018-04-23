@@ -6,16 +6,15 @@ import android.os.Parcelable
 /**
  * Model class Customer. It contains application customers data
  */
-data class Customer(val businessName : String, val address : String, val contactPerson : String,
-                    val email : String, val phoneNumber: Long) : Parcelable {
+data class Customer(val businessName: String, val address: String, val contactPerson: String,
+                    val email: String, val phoneNumber: Long) : Parcelable {
 
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            parcel.readLong()) {
-    }
+            parcel.readLong())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(businessName)
@@ -40,6 +39,6 @@ data class Customer(val businessName : String, val address : String, val contact
     }
 
     override fun toString(): String {
-        return "${businessName} - ${address}"
+        return "$businessName - $address"
     }
 }

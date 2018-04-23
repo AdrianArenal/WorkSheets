@@ -48,6 +48,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
+            android:textAllCaps="true"
             app:layout_constraintStart_toEndOf="@+id/btnClean"
             android:background="@drawable/button"
             style="@style/buttonStyle"/>
@@ -63,6 +64,7 @@
             app:layout_constraintEnd_toStartOf="@+id/btnConfirm"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
+            android:textAllCaps="true"
             android:background="@drawable/button"
             style="@style/buttonStyle"/>
 

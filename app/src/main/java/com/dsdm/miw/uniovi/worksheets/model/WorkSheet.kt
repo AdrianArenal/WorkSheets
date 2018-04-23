@@ -2,7 +2,6 @@ package com.dsdm.miw.uniovi.worksheets.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.util.*
 
 /**
  * Model class WorkSheet. It stores the work sheets information
@@ -19,8 +18,7 @@ data class WorkSheet(val customer: String, val worker: String, val startDate: Lo
             parcel.readString(),
             parcel.readString(),
             parcel.readDouble(),
-            parcel.readDouble()) {
-    }
+            parcel.readDouble())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(customer)

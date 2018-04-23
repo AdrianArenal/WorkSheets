@@ -13,60 +13,61 @@
         android:id="@+id/ivLogo"
         android:layout_width="210dp"
         android:layout_height="186dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="36dp"
         android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toTopOf="@+id/btNewWSheet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside"
         app:srcCompat="@mipmap/pen" />
 
     <Button
         android:id="@+id/btNewWSheet"
+        style="@style/buttonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="@string/new_work_sheet"
-        app:layout_constraintBottom_toTopOf="@+id/btNewClient"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogo"
+        android:layout_marginTop="84dp"
         android:background="@drawable/button"
-        style="@style/buttonStyle"/>
+        android:text="@string/new_work_sheet"
+        android:textAllCaps="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogo" />
 
     <Button
         android:id="@+id/btNewClient"
+        style="@style/buttonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/button"
         android:text="@string/new_client"
+        android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btNewWSheet"
-        android:background="@drawable/button"
-        style="@style/buttonStyle"/>
+        app:layout_constraintTop_toBottomOf="@+id/btNewWSheet" />
 
     <Button
         android:id="@+id/btHistoric"
+        style="@style/buttonStyle"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/button"
         android:text="@string/get_historical"
+        android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btNewClient"
-        android:background="@drawable/button"
-        style="@style/buttonStyle"/>
+        app:layout_constraintTop_toBottomOf="@+id/btNewClient" />
 
 </android.support.constraint.ConstraintLayout>

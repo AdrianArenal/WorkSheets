@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -11,27 +12,23 @@ import android.os.StrictMode
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.util.Base64
 import com.dsdm.miw.uniovi.worksheets.R
+import com.dsdm.miw.uniovi.worksheets.model.Autenticado
 import com.dsdm.miw.uniovi.worksheets.server.APIService
 import com.dsdm.miw.uniovi.worksheets.server.WorkSheetServer
 import com.dsdm.miw.uniovi.worksheets.util.GeneratePDFDocument
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_signature.*
 import okhttp3.ResponseBody
 import org.jetbrains.anko.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
-
-import android.graphics.BitmapFactory
-import android.graphics.Bitmap
-import android.util.Base64
-import android.util.Log
-import com.dsdm.miw.uniovi.worksheets.model.Autenticado
-import com.google.gson.Gson
-import com.google.gson.JsonObject
 import java.io.ByteArrayOutputStream
-import java.util.Date
+import java.io.File
+import java.util.*
 
 
 class SignatureActivity : AppCompatActivity() {
@@ -112,9 +109,9 @@ class SignatureActivity : AppCompatActivity() {
                                                     toast(R.string.errorUnexpected)
                                                 }
                                             })
-                                } else {
-                                    toast(R.string.wrongPassword)
                                 }
+                            } else {
+                                toast(R.string.wrongPassword)
                             }
                         }
 
@@ -149,6 +146,7 @@ class SignatureActivity : AppCompatActivity() {
     private fun sendEmail(fileName: String, customer: String) {
         doAsync {
             val server = WorkSheetServer()
+            @Suppress("NAME_SHADOWING")
             val customer = server.getCustomerByName(customer)
             if (customer != null) {
                 uiThread {

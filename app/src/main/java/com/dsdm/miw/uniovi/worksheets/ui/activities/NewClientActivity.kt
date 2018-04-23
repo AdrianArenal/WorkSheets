@@ -1,14 +1,14 @@
 package com.dsdm.miw.uniovi.worksheets.ui.activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
+import android.support.v7.app.AppCompatActivity
 import com.dsdm.miw.uniovi.worksheets.R
 import com.dsdm.miw.uniovi.worksheets.server.APIService
 import com.dsdm.miw.uniovi.worksheets.server.WorkSheetServer
 import kotlinx.android.synthetic.main.activity_new_client.*
 import okhttp3.ResponseBody
-import org.jetbrains.anko.*
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
