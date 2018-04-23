@@ -4,15 +4,19 @@ import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import com.dsdm.miw.uniovi.worksheets.R
 import com.dsdm.miw.uniovi.worksheets.model.WorkSheet
+import com.dsdm.miw.uniovi.worksheets.ui.filters.WorkSheetsFilter
 import kotlinx.android.synthetic.main.item_work_sheet.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class WorkSheetListAdapter(val items: Array<WorkSheet>, val itemClick: (WorkSheet) -> Unit)
-    : RecyclerView.Adapter<WorkSheetListAdapter.ViewHolder>() {
+class WorkSheetListAdapter(var items: Array<WorkSheet>, var itemClick: (WorkSheet) -> Unit)
+    : RecyclerView.Adapter<WorkSheetListAdapter.ViewHolder>(), Filterable {
 
+    var filter: WorkSheetsFilter? = null
     // Implementación de RecyclerView.ViewHolder que se usará en la función onCreateViewHolder
     class ViewHolder(val cardView: CardView, val itemClick: (WorkSheet) -> Unit)
         : RecyclerView.ViewHolder(cardView) {
@@ -31,7 +35,13 @@ class WorkSheetListAdapter(val items: Array<WorkSheet>, val itemClick: (WorkShee
             }
         }
     }
+    override fun getFilter(): Filter {
+        if (filter == null) {
+            filter = WorkSheetsFilter(items, this)
+        }
 
+        return filter as WorkSheetsFilter
+    }
     // Crea nuevas vistas para cada elemento de la lista. Lo invoca el LayoutManager.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Crea una nueva vista.

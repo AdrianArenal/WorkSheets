@@ -31,7 +31,8 @@
         <activity
             android:name=".ui.activities.NewClientActivity"
             android:parentActivityName=".ui.activities.MainActivity" />
-        <activity android:name=".ui.activities.ListWorkSheets" />
+        <activity android:name=".ui.activities.ListWorkSheets"
+            android:parentActivityName=".ui.activities.MainActivity"/>
         <activity android:name=".ui.activities.WorkSheetDetailActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

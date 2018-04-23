@@ -15,6 +15,7 @@
     <string name="worker">Trabajador</string>
     <string name="customer">Cliente</string>
     <string name="add_customer">+</string>
+    <string name="search">Buscar parte...</string>
     <string name="btn_add_customer">Añadir cliente</string>
     <string name="description">Descripción</string>
     <string name="address">Dirección</string>
