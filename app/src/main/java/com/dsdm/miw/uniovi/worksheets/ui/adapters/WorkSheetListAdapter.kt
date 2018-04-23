@@ -22,7 +22,7 @@ class WorkSheetListAdapter(val items: Array<WorkSheet>, val itemClick: (WorkShee
             // Dentro del bloque with, this es worksheet
             // itemView es la vista item_work_sheet cargada más adelante
             with(worksheet) {
-                itemView.txCustomer.text = customer
+                itemView.txCustomer.text =customer
                 itemView.txWorker.text = worker
                 itemView.txDate.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                         .format(startDate)

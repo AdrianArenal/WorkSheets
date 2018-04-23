@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WorkSheets</string>
+    <string name="clientAdded">Cliente añadido correctamente</string>
+    <string name="errorUnexpected">Error inesperado</string>
+    <string name="invalidEmail">Formato de email no válido</string>
+    <string name="noSignature">El campo de firma está vacío</string>
+    <string name="wrongPassword">Contraseña incorrecta</string>
+    <string name="messageSent">Mensaje enviado</string>
+    <string name="messageCancel">Mensaje cancelado</string>
     <string name="sheet">Parte de trabajo</string>
     <string name="new_work_sheet">Nuevo parte de trabajo</string>
     <string name="new_client">Nuevo cliente</string>
@@ -8,7 +15,12 @@
     <string name="worker">Trabajador</string>
     <string name="customer">Cliente</string>
     <string name="add_customer">+</string>
+    <string name="btn_add_customer">Añadir cliente</string>
     <string name="description">Descripción</string>
+    <string name="address">Dirección</string>
+    <string name="phone">Teléfono</string>
+    <string name="email">Correo</string>
+    <string name="enterprise">Empresa</string>
     <string name="date">Fecha</string>
     <string name="time">Tiempo</string>
     <string name="sign">Firmar parte de trabajo</string>

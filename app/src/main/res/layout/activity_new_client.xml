@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Empresa"
+            android:text="@string/enterprise"
             app:layout_constraintBaseline_toBaselineOf="@+id/editTextBusinessName"
             app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
@@ -44,6 +44,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
             android:ems="10"
+            android:hint="@string/enterprise"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.507"
@@ -54,7 +55,7 @@
             android:id="@+id/txEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email"
+            android:text="@string/email"
             app:layout_constraintBaseline_toBaselineOf="@+id/editTextEmail"
             app:layout_constraintEnd_toEndOf="@+id/txBusinessName" />
 
@@ -66,6 +67,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:ems="10"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/txEmail"
@@ -75,7 +77,7 @@
             android:id="@+id/txPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Teléfono"
+            android:text="@string/phone"
             app:layout_constraintBaseline_toBaselineOf="@+id/editTextPhone"
             app:layout_constraintEnd_toEndOf="@+id/txEmail" />
 
@@ -87,6 +89,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:ems="10"
+            android:hint="@string/phone"
             android:inputType="phone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/txPhone"
@@ -96,7 +99,7 @@
             android:id="@+id/txAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Direccion"
+            android:text="@string/address"
             app:layout_constraintBaseline_toBaselineOf="@+id/editTextAddress"
             app:layout_constraintEnd_toEndOf="@+id/txPhone" />
 
@@ -108,6 +111,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:ems="10"
+            android:hint="@string/address"
             android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/txAddress"
@@ -115,13 +119,13 @@
 
         <Button
             android:id="@+id/btAddCustomer"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:text="Añadir Cliente"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            android:text="@string/btn_add_customer"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -145,7 +149,7 @@
             android:layout_height="39dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
-            android:text="Persona de contacto"
+            android:text="@string/contactPerson"
             app:layout_constraintEnd_toEndOf="@+id/txAddress"
             app:layout_constraintHorizontal_bias="0.428"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -159,6 +163,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="12dp"
             android:ems="10"
+            android:hint="@string/contactPerson"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.347"

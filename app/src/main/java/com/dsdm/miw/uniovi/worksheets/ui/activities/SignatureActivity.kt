@@ -1,6 +1,7 @@
 package com.dsdm.miw.uniovi.worksheets.ui.activities
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -68,28 +69,30 @@ class SignatureActivity : AppCompatActivity() {
         onBackPressed()
         return true
     }
+
     private fun clean() {
         signature_view.clearCanvas()
     }
 
     private fun confirm() {
-        if (!signature_view.isBitmapEmpty) {
+        if (checkEmptyFields()) {
             val worker = intent.getStringExtra(EXTRA_WORKER)
             val customer = intent.getStringExtra(EXTRA_CUSTOMER)
             val start = intent.getLongExtra(EXTRA_START, 0)
             val end = intent.getLongExtra(EXTRA_END, 0)
-            val description =intent.getStringExtra(EXTRA_DESCRIPTION)
-            val lat = intent.getDoubleExtra(EXTRA_LAT,0.0)
-            val long = intent.getDoubleExtra(EXTRA_LNG,0.0)
+            val description = intent.getStringExtra(EXTRA_DESCRIPTION)
+            val lat = intent.getDoubleExtra(EXTRA_LAT, 0.0)
+            val long = intent.getDoubleExtra(EXTRA_LNG, 0.0)
             val sign = bitmapToString(signature_view.signatureBitmap)
             val password = editTextPasswordConfirm.text.toString()
+
             api!!.autenthicate(worker, password)
                     .enqueue(object : Callback<JsonObject> {
                         override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                             if (response.isSuccessful) {
                                 val resp = Gson().fromJson(response.body(), Autenticado::class.java)
-                                if(resp.autenticado){
-                                    api!!.addWorkSheet(worker, customer, start, end, description,sign, lat, long)
+                                if (resp.autenticado) {
+                                    api!!.addWorkSheet(worker, customer, start, end, description, sign, lat, long)
                                             .enqueue(object : Callback<ResponseBody> {
                                                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                                                     if (response.isSuccessful) {
@@ -98,23 +101,32 @@ class SignatureActivity : AppCompatActivity() {
                                                         alert(getString(R.string.send_email)) {
                                                             title = getString(R.string.send)
                                                             yesButton {
-                                                                sendEmail(fileName,customer)
+                                                                sendEmail(fileName, customer)
                                                             }
                                                             noButton { startActivity<MainActivity>() }
                                                         }.show()
                                                     }
                                                 }
-                                                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {}
+
+                                                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                                                    toast(R.string.errorUnexpected)
+                                                }
                                             })
+                                } else {
+                                    toast(R.string.wrongPassword)
                                 }
                             }
                         }
-                        override fun onFailure(call: Call<JsonObject>, t: Throwable) {}
+
+                        override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                            toast(R.string.errorUnexpected)
+                        }
                     })
         }
+
     }
 
-    private fun generatePDF(dest : String) {
+    private fun generatePDF(dest: String) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
@@ -134,7 +146,7 @@ class SignatureActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendEmail(fileName: String, customer:String) {
+    private fun sendEmail(fileName: String, customer: String) {
         doAsync {
             val server = WorkSheetServer()
             val customer = server.getCustomerByName(customer)
@@ -148,16 +160,42 @@ class SignatureActivity : AppCompatActivity() {
                     emailIntent.putExtra(Intent.EXTRA_EMAIL, to)
                     emailIntent.putExtra(Intent.EXTRA_STREAM, path)
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.sheet))
-                    startActivity(Intent.createChooser(emailIntent, getString(R.string.send)))
+                    startActivityForResult(Intent.createChooser(emailIntent, getString(R.string.send)), 1)
                 }
             }
         }
 
     }
+
+    private fun checkEmptyFields(): Boolean {
+        if (editTextContactPerson.text.isEmpty() || editTextPasswordConfirm.text.isEmpty()) {
+            toast(R.string.empty)
+            return false
+        } else if (signature_view.isBitmapEmpty) {
+            toast(R.string.noSignature)
+            return false
+        }
+        return true
+    }
+
     private fun bitmapToString(bitmap: Bitmap): String {
         val bytes = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, bytes)
         return Base64.encodeToString(bytes.toByteArray(), Base64.DEFAULT)
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                toast(R.string.messageSent)
+                startActivity<MainActivity>()
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                toast(R.string.messageCancel)
+                startActivity<MainActivity>()
+            }
+        }
+    }
+
 
 }

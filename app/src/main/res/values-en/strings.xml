@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WorkSheets</string>
+    <string name="clientAdded">Added Customer correctly</string>
+    <string name="errorUnexpected">Unexpected error</string>
+    <string name="invalidEmail">Email format not valid</string>
+    <string name="noSignature">Signature field is empty</string>
+    <string name="wrongPassword">Wrong password</string>
+    <string name="messageSent">Message sent</string>
+    <string name="messageCancel">Message canceled</string>
     <string name="sheet">Worksheet</string>
     <string name="new_work_sheet">New worksheet</string>
     <string name="new_client">New client</string>
@@ -8,7 +15,12 @@
     <string name="worker">Worker</string>
     <string name="customer">Customer</string>
     <string name="add_customer">+</string>
+    <string name="btn_add_customer">Add customer</string>
     <string name="description">Description</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="enterprise">Enterprise</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
     <string name="sign">Sign worksheet</string>

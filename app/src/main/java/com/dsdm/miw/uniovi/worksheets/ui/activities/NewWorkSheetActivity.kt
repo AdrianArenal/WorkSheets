@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.ArrayAdapter
 import com.dsdm.miw.uniovi.worksheets.R
-import com.dsdm.miw.uniovi.worksheets.model.Customer
 import com.dsdm.miw.uniovi.worksheets.server.WorkSheetServer
 import kotlinx.android.synthetic.main.activity_new_work_sheet.*
 import org.jetbrains.anko.*
@@ -36,12 +35,14 @@ class NewWorkSheetActivity : AppCompatActivity() {
     }
 
     private fun initializeComponents() {
-        etDate.setText(SimpleDateFormat("dd/MM/yyyy").format(Date()))
+        etDate.setText(SimpleDateFormat("dd/MM/yyyy",Locale.getDefault()).format(Date()))
         btSign.setOnClickListener{ createSign() }
         doAsync {
             val server = WorkSheetServer()
             val workers = server.getWorkers()
             val customers = server.getCustomers()
+            Log.d("TAG","${workers?.size}")
+            Log.d("TAG","${customers?.size}")
             if (workers != null && customers != null) {
                 activityUiThreadWithContext {
                     spWorkers.adapter =
@@ -151,7 +152,7 @@ class NewWorkSheetActivity : AppCompatActivity() {
             return -1
         val date: String = etDate.text.toString()
         return SimpleDateFormat("dd/MM/yyyy hh:mm", Locale.getDefault())
-                    .parse("${date} ${hour}").time
+                    .parse("$date $hour").time
     }
 
 }
